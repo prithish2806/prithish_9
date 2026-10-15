@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n;
+    printf("Enter the size (n): ");
+    scanf("%d", &n);
+
+    // The size of the grid is always (2 * n) - 1
+    int size = 2 * n - 1; 
+
+    // Nested loops to iterate through rows and columns
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            
+            // Calculate distance of the current cell from all 4 edges
+            int top = i;
+            int bottom = size - 1 - i;
+            int left = j;
+            int right = size - 1 - j;
+
+            // Find the minimum distance to any edge
+            int min = top;
+            if (bottom < min) min = bottom;
+            if (left < min) min = left;
+            if (right < min) min = right;
+
+            // The value printed decreases as it moves inward
+            printf("%d ", n - min);
+        }
+        printf("\n"); // Move to the next row
+    }
+
+    return 0;
+}
